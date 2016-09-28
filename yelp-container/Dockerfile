@@ -37,7 +37,7 @@ RUN conda install --quiet --yes \
     'sqlalchemy=1.0*' \
     'hdf5=1.8.17' \
     'h5py=2.6*' && \
-    conda remove --quiet --yes --force qt pyqt && \
+#conda remove --quiet --yes --force qt pyqt && \
     conda clean -tipsy
 
 # Activate ipywidgets extension in the environment that runs the notebook server
@@ -68,15 +68,15 @@ RUN conda create --quiet --yes -p $CONDA_DIR/envs/python2 python=2.7 \
     'h5py=2.6*' \
     'sqlalchemy=1.0*' \
     'pyzmq' && \
-    conda remove -n python2 --quiet --yes --force qt pyqt && \
+#conda remove -n python2 --quiet --yes --force qt pyqt && \
     conda clean -tipsy
 # Add shortcuts to distinguish pip for python2 and python3 envs
 RUN ln -s $CONDA_DIR/envs/python2/bin/pip $CONDA_DIR/bin/pip2 && \
     ln -s $CONDA_DIR/bin/pip $CONDA_DIR/bin/pip3
 
 # Configure ipython kernel to use matplotlib inline backend by default
-RUN mkdir -p $HOME/.ipython/profile_default/startup
-COPY mplimporthook.py $HOME/.ipython/profile_default/startup/
+#RUN mkdir -p $HOME/.ipython/profile_default/startup
+#COPY mplimporthook.py $HOME/.ipython/profile_default/startup/
 
 USER root
 
